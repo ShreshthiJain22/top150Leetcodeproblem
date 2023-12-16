@@ -1,23 +1,23 @@
 class Solution {
 public:
     vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
+        int n=nums1.size();
+        int m=nums2.size();
         vector<int>v;
-        
-       
-        for(int i=0;i<nums1.size();i++){
-             int maxright=nums1[i];
-            int index=nums2.size();
-            for(int j=0;j<nums2.size();j++){
-                if(nums2[j]==nums1[i]){
+        for(int i=0;i<n;i++){
+            int index=m;
+            bool find=false;
+            for(int j=0;j<m;j++){
+                if(nums1[i]==nums2[j]){
                     index=j;
                 }
-                if(j>index && maxright<nums2[j]) {
-                    maxright=nums2[j];
-                   v.push_back(maxright);
+                if(j>index && nums2[j]>nums1[i]){
+                    find=true;
+                    v.push_back(nums2[j]);
                     break;
                 }
             }
-            if(maxright==nums1[i]){
+            if(find==false){
                 v.push_back(-1);
             }
         }
